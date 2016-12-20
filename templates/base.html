@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <script src="https://code.jquery.com/jquery.js"></script>
+   <!-- moment.js for datetime  -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <link rel="shortcut icon" href="static/favicon.png" />
+    <title>Scuber</title>
+
+
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/cyborg/bootstrap.min.css"
+          rel="stylesheet">
+
+        <!-- CSS -->
+
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+          
+<link href='https://fonts.googleapis.com/css?family=Frijole' rel='stylesheet' type='text/css'>
+    <style>
+      #map {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--left logo icon on homepage -->
+            <a class="navbar-brand" href="/">
+                <!-- <span class="glyphicon glyphicon-eye-open"></span> -->
+                Scuber
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                {% if "driver_id" in session or "passenger_id" in session %}
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/feed">Feed</a></li>
+                    <li><a href="/overview">History</a></li>
+                {% else %}
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+         
+        
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div id="extending">
+    {% for flash in get_flashed_messages() %}
+      <div class="alert alert-danger" style="width:90%; margin:0 auto;">{{ flash }}</div>
+    {% endfor %}
+{% block content %}
+{% endblock %}
+</div>
+
+{% block body%}{% endblock %}
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxtu_GqonEXNKEIzlMlF00LHpLYEPEjo0&callback=initMap" type="text/javascript"></script>
+
+
+</body>
+</html>
